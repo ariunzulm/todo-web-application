@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo Web Application</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="general-container">
+      <h1>To-Do list</h1>   
+
+      <div class="input-container">
+        <input id="myText" type="text" placeholder="Add a new task..." />
+        <button id="myButton">Add</button> <br /><br />
+      </div>
+
+      <div class="filter-container">
+        <button class="buttons">All</button>
+        <button class="buttons">Active</button>
+        <button class="buttons">Completed</button>
+      </div>
+      <br />
+
+      <div class="task-container" id="task-container"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

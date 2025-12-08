@@ -1,0 +1,79 @@
+* {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+}
+body {
+  margin-top: 60px;
+  background-color: hsl(170, 21%, 95%);
+}
+#general-container {
+  background-color: #ffffff;
+  max-width: 377px;
+  height: fit-content;
+  text-align: center;
+  margin: auto;
+  border-radius: 10px;
+  padding: 24px 16px;
+}
+
+.input-container {
+  min-width: 345px;
+}
+.task {
+  display: flex;
+  justify-content: space-between;
+}
+#myText {
+  width: 280px;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid #e4e4e7;
+  padding-left: 16px;
+}
+#myButton {
+  width: 59px;
+  height: 40px;
+  border-radius: 6px;
+  background-color: #3c82f6;
+  border: none;
+  color: white;
+  font-weight: lighter;
+}
+.filter-container {
+  display: flex;
+  min-width: 345px;
+  gap: 6px;
+  padding-left: 6px;
+}
+.buttons {
+  background-color: #f3f4f6;
+  border-radius: 6px;
+  height: 32px;
+  padding: 4px 12px;
+  width: fit-content;
+  border: none;
+  font-weight: lighter;
+}
+
+.task-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 345px;
+  height: 100%;
+  height: 40px;
+  padding: 16px;
+  background-color: #f9fafb;
+  border-radius: 6px;
+  font-weight: lighter;
+  font-size: 14px;
+}
+
+#myDeleteButton {
+  width: 67px;
+  height: 30px;
+  border: none;
+  color: #ef4444;
+  background-color: #fef2f2;
+  border-radius: 6px;
+}
