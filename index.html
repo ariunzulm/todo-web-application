@@ -8,7 +8,7 @@
   </head>
   <body>
     <div id="general-container">
-      <h1>To-Do list</h1>   
+      <h1>To-Do list</h1>
 
       <div class="input-container">
         <input id="myText" type="text" placeholder="Add a new task..." />
@@ -22,7 +22,25 @@
       </div>
       <br />
 
-      <div class="task-container" id="task-container"></div>
+      <div class="create-container" id="task-container">
+        <p
+          style="color: #6b7280; font-weight: lighter; font-size: 14px"
+          aria-placeholder=""
+        >
+          No tasks yet. Add one above!
+        </p>
+      </div>
+
+      <div class="summary-container">
+        <p id="numOfCompleted">0 of 2 tasks completed</p>
+        <p id="clearCompleted" style="color: #ef4444">Clear completed</p>
+      </div>
+
+      <div class="footer-container">
+        <p>Powered by</p>
+
+        <p style="color: #3b73ed">Pinecone Academy</p>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>

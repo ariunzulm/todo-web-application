@@ -21,6 +21,7 @@ body {
 }
 .task {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 #myText {
@@ -57,23 +58,45 @@ body {
 
 .task-container {
   display: flex;
-  flex-direction: column;
   gap: 20px;
   width: 345px;
-  height: 100%;
-  height: 40px;
+  /* height: 40px; */
   padding: 16px;
   background-color: #f9fafb;
   border-radius: 6px;
   font-weight: lighter;
   font-size: 14px;
 }
-
+.create-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 #myDeleteButton {
   width: 67px;
   height: 30px;
+  margin-top: 5px;
   border: none;
   color: #ef4444;
   background-color: #fef2f2;
   border-radius: 6px;
+}
+
+.summary-container {
+  display: flex;
+  min-width: 345px;
+  padding: 0 6px 0 6px;
+  justify-content: space-between;
+  color: #6b7280;
+  font-weight: lighter;
+  font-size: 14px;
+}
+
+.footer-container {
+  display: flex;
+  font-weight: lighter;
+  color: #6b7280;
+  justify-content: center;
+  font-size: 14px;
+  gap: 5px;
 }
