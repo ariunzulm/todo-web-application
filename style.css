@@ -20,8 +20,6 @@ body {
   min-width: 345px;
 }
 .task {
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
 }
 #myText {
@@ -55,12 +53,15 @@ body {
   border: none;
   font-weight: lighter;
 }
+.line-through {
+  text-decoration: line-through;
+}
 
 .task-container {
   display: flex;
   gap: 20px;
   width: 345px;
-  /* height: 40px; */
+
   padding: 16px;
   background-color: #f9fafb;
   border-radius: 6px;
