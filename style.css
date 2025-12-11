@@ -37,6 +37,7 @@ body {
   border: none;
   color: white;
   font-weight: lighter;
+  cursor: pointer;
 }
 .filter-container {
   display: flex;
@@ -52,6 +53,7 @@ body {
   width: fit-content;
   border: none;
   font-weight: lighter;
+  cursor: pointer;
 }
 .line-through {
   text-decoration: line-through;
@@ -100,4 +102,8 @@ body {
   justify-content: center;
   font-size: 14px;
   gap: 5px;
+}
+
+.cross {
+  text-decoration: line-through;
 }

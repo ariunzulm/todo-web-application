@@ -2,28 +2,34 @@ const myTextElement = document.getElementById("myText");
 const myButtonElement = document.getElementById("myButton");
 const form = document.getElementById("form");
 const taskContainerElement = document.getElementById("task-container");
-const myPElement = document.getElementById("myP");
+// const myPElement = document.getElementByClassName("myP");
 const inputElement = document.getElementById("input");
+const filterButtonElement = document.getElementById("filterButton");
+const numOfCompletedElement = document.getElementById("numOfCompleted");
+const clearCompletedElement = document.getElementById("clearCompleted");
 
 // ----TO GET INPUT-------------------------
 let tasks = [];
-let taskId = 0;
+let taskId = 1;
 
 const addANewTask = () => {
   const input = myTextElement.value;
-
+  if (input === "") {
+    alert("Please enter a task!");
+    return;
+  }
   //   console.log(task);
   const task = {
     text: input,
     isComplete: false,
     id: taskId,
   };
+
   tasks.push(task);
-  console.log(tasks);
 
   taskId++;
   cleanInput();
-  renderTask();
+  renderTask(tasks);
 };
 
 const cleanInput = () => {
@@ -32,13 +38,26 @@ const cleanInput = () => {
 
 // ----TO STORE TASKS-------------------------
 
+// loops all tasks
+const renderTask = (tasks) => {
+  let taskElements = "";
+  // sending each element and add on top of it
+  tasks.forEach((task) => {
+    const taskElement = createTask(task);
+    // console.log(taskElement, "taskel");
+
+    taskElements += taskElement;
+  });
+  taskContainerElement.innerHTML = taskElements;
+};
+
 const createTask = (task) => {
   return `<div class='task task-container'>
       <input id="input" type="checkbox" ${
         task.isComplete ? "checked" : ""
       } onclick="toggleTasks(${task.id})"/>
 
-      <p id="myP">${task.text}</p>
+      <p class="myP ${task.isComplete && "cross"}"> ${task.text}</p>
 
       <button id="myDeleteButton" onclick="toDeleteTasks(${
         task.id
@@ -46,41 +65,19 @@ const createTask = (task) => {
     </div>`;
 };
 
-// loops all tasks
-const renderTask = () => {
-  let taskElements = "";
-
-  // sending each element and add on top of it
-  tasks.forEach((task) => {
-    const taskElement = createTask(task);
-    // console.log(taskElement, "taskel");
-
-    taskElements += taskElement;
-    taskContainerElement.innerHTML = taskElements;
-  });
-};
-
 // ----TO DELETE TASKS-----------------------
 
 const toDeleteTasks = (taskId) => {
-  const selectedTask = tasks.filter((task) => {
-    // hervee task-n id ni taskId-tai tentsuu bvl return false, else true
-    if (task.id === taskId) {
-      return false;
-    } else {
-      return true;
-    }
-  });
-  console.log(selectedTask);
-  tasks = selectedTask;
-  renderTask();
+  tasks = tasks.filter((task) => task.id !== taskId);
+
+  renderTask(tasks);
+  updatedCount(tasks);
+
+  alert("Are you sure you want to delete this task?");
+  return;
 };
 
 myButtonElement.addEventListener("click", addANewTask);
-
-// ----CHECK & LINE THROUGH----------------
-// check-dr ni (isComplete) true: false
-// when to exectue - onclick with taskId
 
 let completedCount = 0;
 const toggleTasks = (taskId) => {
@@ -93,15 +90,51 @@ const toggleTasks = (taskId) => {
     }
   });
   completedCount++;
-  console.log(tasks);
+  renderTask(tasks);
+  updatedCount(tasks);
 };
-console.log(completedCount);
-// function toggleStrikethrough() {
-//   const myPElement.style.textDecoration ="line-through" ;
-// }
+// console.log(completedCount);
 
-// ----COUNT CHECKED TASKS----------------
+// ----FILTER TODOS INTO 3 BUTTONS----------------
+const filterTasks = (filterValues) => {
+  if (filterValues === "active") {
+    const activeTasks = tasks.filter((task) => {
+      return task.isComplete === false;
+    });
+    renderTask(activeTasks);
+  }
+  if (filterValues === "all") {
+    return renderTask(tasks);
+  }
+
+  if (filterValues === "completed") {
+    const completedTasks = tasks.filter((task) => {
+      return task.isComplete === true;
+    });
+    renderTask(completedTasks);
+  }
+};
+
+// ----COUNT COMPLETED TASKS----------------
 // herveee iscomplete - true bvl count++
+// how many tasks === how many of them completed
+const updatedCount = (tasks) => {
+  const completed = tasks.filter((task) => task.isComplete).length;
+  console.log(completed);
+  console.log(tasks.length);
+  numOfCompletedElement.textContent = `${completed} of ${tasks.length} tasks completed`;
+};
+
+// ----CLEAR ALL COMPLETED TASKS----------------
+// if clear completed pressed delete all completed tasks
+const clearAllCompleted = () => {
+  tasks = tasks.filter((task) => !task.isComplete);
+  alert("Are you sure you want to clear all completed tasks?");
+  
+  renderTask();
+  updatedCount(tasks);
+};
+clearCompletedElement.addEventListener("click", clearAllCompleted);
 
 // const countSummary = ((task)=>{
 // return `<div class="summary-container">
