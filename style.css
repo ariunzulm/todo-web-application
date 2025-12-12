@@ -55,6 +55,19 @@ body {
   font-weight: lighter;
   cursor: pointer;
 }
+.allButton:hover {
+  color: white;
+  background-color: #3c82f6;
+  cursor: pointer;
+}
+.activeButton:hover {
+  color: white;
+  background-color: #3c82f6;
+}
+.completedButton:hover {
+  color: white;
+  background-color: #3c82f6;
+}
 .line-through {
   text-decoration: line-through;
 }
@@ -85,6 +98,14 @@ body {
   border-radius: 6px;
 }
 
+#clearCompleted {
+  color: #ef4444;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
 .summary-container {
   display: flex;
   min-width: 345px;

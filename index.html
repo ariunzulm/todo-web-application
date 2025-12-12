@@ -16,18 +16,22 @@
       </div>
 
       <div class="filter-container">
-        <button class="buttons" onclick="filterTasks('all')" id="filterButton">
+        <button
+          class="buttons allButton"
+          onclick="filterTasks('all')"
+          id="filterButton"
+        >
           All
         </button>
         <button
-          class="buttons"
+          class="buttons activeButton"
           onclick="filterTasks('active')"
           id="filterButton"
         >
           Active
         </button>
         <button
-          class="buttons"
+          class="buttons completedButton"
           onclick="filterTasks('completed')"
           id="filterButton"
         >
@@ -47,7 +51,7 @@
 
       <div class="summary-container">
         <p id="numOfCompleted"></p>
-        <p id="clearCompleted" style="color: #ef4444">Clear completed</p>
+        <button id="clearCompleted">Clear completed</button>
       </div>
 
       <div class="footer-container">

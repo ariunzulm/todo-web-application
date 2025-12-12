@@ -4,14 +4,16 @@ const form = document.getElementById("form");
 const taskContainerElement = document.getElementById("task-container");
 // const myPElement = document.getElementByClassName("myP");
 const inputElement = document.getElementById("input");
-const filterButtonElement = document.getElementById("filterButton");
+const filterButtonElement = document.querySelectorAll("filterButton");
 const numOfCompletedElement = document.getElementById("numOfCompleted");
 const clearCompletedElement = document.getElementById("clearCompleted");
 
 // ----TO GET INPUT-------------------------
 let tasks = [];
 let taskId = 1;
-
+if (tasks.length === 0) {
+  clearCompletedElement.style.display = "none";
+}
 const addANewTask = () => {
   const input = myTextElement.value;
   if (input === "") {
@@ -29,6 +31,7 @@ const addANewTask = () => {
 
   taskId++;
   cleanInput();
+  updatedCount(tasks);
   renderTask(tasks);
 };
 
@@ -49,6 +52,9 @@ const renderTask = (tasks) => {
     taskElements += taskElement;
   });
   taskContainerElement.innerHTML = taskElements;
+  if (tasks.length !== 0) {
+    clearCompletedElement.style.display = "block";
+  }
 };
 
 const createTask = (task) => {
@@ -64,6 +70,11 @@ const createTask = (task) => {
       })">Delete</button>
     </div>`;
 };
+// clearcompleted darahad taskContainerElement butsaj garj ireh
+// const refreshingP = ()=>{
+
+// }
+// taskContainerElement =
 
 // ----TO DELETE TASKS-----------------------
 
@@ -73,8 +84,8 @@ const toDeleteTasks = (taskId) => {
   renderTask(tasks);
   updatedCount(tasks);
 
-  alert("Are you sure you want to delete this task?");
-  return;
+  const confirmDelete = confirm("Are you sure you want to delete this task?");
+  if (!confirmDelete) return;
 };
 
 myButtonElement.addEventListener("click", addANewTask);
@@ -89,13 +100,14 @@ const toggleTasks = (taskId) => {
       return task;
     }
   });
+
   completedCount++;
   renderTask(tasks);
   updatedCount(tasks);
 };
 // console.log(completedCount);
 
-// ----FILTER TODOS INTO 3 BUTTONS----------------
+// ----FILTER TASKS INTO 3 BUTTONS----------------
 const filterTasks = (filterValues) => {
   if (filterValues === "active") {
     const activeTasks = tasks.filter((task) => {
@@ -111,14 +123,16 @@ const filterTasks = (filterValues) => {
     const completedTasks = tasks.filter((task) => {
       return task.isComplete === true;
     });
+
     renderTask(completedTasks);
   }
 };
 
 // ----COUNT COMPLETED TASKS----------------
-// herveee iscomplete - true bvl count++
-// how many tasks === how many of them completed
+// how many tasks => how many of them completed
 const updatedCount = (tasks) => {
+  console.log(tasks, "updated");
+
   const completed = tasks.filter((task) => task.isComplete).length;
   console.log(completed);
   console.log(tasks.length);
@@ -127,21 +141,18 @@ const updatedCount = (tasks) => {
 
 // ----CLEAR ALL COMPLETED TASKS----------------
 // if clear completed pressed delete all completed tasks
+
 const clearAllCompleted = () => {
   tasks = tasks.filter((task) => !task.isComplete);
-  alert("Are you sure you want to clear all completed tasks?");
-  
-  renderTask();
+  const confirmClear = confirm(
+    "Are you sure you want to clear all completed tasks?"
+  );
+  if (!confirmClear) return;
+
+  renderTask(tasks);
   updatedCount(tasks);
 };
 clearCompletedElement.addEventListener("click", clearAllCompleted);
-
-// const countSummary = ((task)=>{
-// return `<div class="summary-container">
-//         <p id="numOfCompleted">0 of 2 tasks completed</p>
-//         <p id="clearCompleted" style="color: #ef4444">Clear completed</p>
-//       </div>`
-// })
 
 // ----------FILTER---------------------------
 // const toDeleteTasks = (id) => {
