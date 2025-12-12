@@ -76,7 +76,7 @@ body {
   display: flex;
   gap: 20px;
   width: 345px;
-
+  margin-top: 5px;
   padding: 16px;
   background-color: #f9fafb;
   border-radius: 6px;
@@ -106,7 +106,7 @@ body {
   display: flex;
   align-items: center;
 }
-.summary-container {
+#summary-container {
   display: flex;
   min-width: 345px;
   padding: 0 6px 0 6px;

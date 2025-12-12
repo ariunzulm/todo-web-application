@@ -7,6 +7,7 @@ const inputElement = document.getElementById("input");
 const filterButtonElement = document.querySelectorAll("filterButton");
 const numOfCompletedElement = document.getElementById("numOfCompleted");
 const clearCompletedElement = document.getElementById("clearCompleted");
+const summaryContainerElement = document.getElementById("summary-container");
 
 // ----TO GET INPUT-------------------------
 let tasks = [];
@@ -71,21 +72,38 @@ const createTask = (task) => {
     </div>`;
 };
 // clearcompleted darahad taskContainerElement butsaj garj ireh
-// const refreshingP = ()=>{
+const refreshingText = () => {
+  return `<div class="create-container" id="task-container">
+        <p
+          style="color: #6b7280; font-weight: lighter; font-size: 14px"
+          aria-placeholder=""
+        >
+          No tasks yet. Add one above!
+        </p>
+      </div>`;
+};
+const noneRefreshingText = () => {
+  taskContainerElement.style.display = "none";
+};
 
-// }
-// taskContainerElement =
-
+const blockRefreshingText = () => {
+  taskContainerElement.innerHTML = refreshingText();
+  taskContainerElement.style.display = "block";
+};
 // ----TO DELETE TASKS-----------------------
 
 const toDeleteTasks = (taskId) => {
+  const confirmDelete = confirm("Are you sure you want to delete this task?");
+  if (!confirmDelete) return;
+
   tasks = tasks.filter((task) => task.id !== taskId);
 
   renderTask(tasks);
   updatedCount(tasks);
 
-  const confirmDelete = confirm("Are you sure you want to delete this task?");
-  if (!confirmDelete) return;
+  if (tasks.length === 0) {
+    blockRefreshingText();
+  }
 };
 
 myButtonElement.addEventListener("click", addANewTask);
@@ -134,8 +152,6 @@ const updatedCount = (tasks) => {
   console.log(tasks, "updated");
 
   const completed = tasks.filter((task) => task.isComplete).length;
-  console.log(completed);
-  console.log(tasks.length);
   numOfCompletedElement.textContent = `${completed} of ${tasks.length} tasks completed`;
 };
 
@@ -151,8 +167,13 @@ const clearAllCompleted = () => {
 
   renderTask(tasks);
   updatedCount(tasks);
+  blockRefreshingText();
+  console.log(summaryContainerElement);
+  summaryContainerElement.style.display = "none";
 };
+
 clearCompletedElement.addEventListener("click", clearAllCompleted);
+blockRefreshingText();
 
 // ----------FILTER---------------------------
 // const toDeleteTasks = (id) => {
