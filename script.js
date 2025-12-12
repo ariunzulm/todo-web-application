@@ -118,7 +118,7 @@ const toggleTasks = (taskId) => {
       return task;
     }
   });
-
+  // hello
   completedCount++;
   renderTask(tasks);
   updatedCount(tasks);
